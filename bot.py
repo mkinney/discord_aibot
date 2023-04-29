@@ -3,7 +3,7 @@
 import os
 import discord
 from discord.ext import commands
-from pygpt4all.models.gpt4all_j import GPT4All_J
+from pygpt4all.models.gpt4all import GPT4All
 
 def new_text_callback(text):
     return text
@@ -18,7 +18,7 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='?', description=description, intents=intents)
 
-model = GPT4All_J('ggml-gpt4all-j-v1.3-groovy.bin')
+model = GPT4All('ggml-gpt4all-l13b-snoozy.bin')
 
 @bot.event
 async def on_ready():

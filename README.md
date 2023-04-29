@@ -1,17 +1,11 @@
 # Setting up the simplest Discord AI bot using pygpt4all
 
-I'm using an Ubuntu Digital Ocean instance with 8gb of ram. Might need a bigger instance.
+On Ubuntu 22.04 with 14gb ram, 4 procs, and the ich9 chipset in Virtualbox to run the 13b model
+
+TIP: If you have vagrant, you can simply run "vagrant up", then "vagrant ssh", then "sudo su - dbots" update the value in .env file.
 
 ```
 apt-get update
-apt-get -y upgrade
-```
-
-probably want to reboot at this point
-
-```
-reboot
-
 apt-get -y install python3.10-venv python3-pip
 useradd -m -s /bin/bash dbots
 
@@ -26,7 +20,7 @@ Edit .bashrc and add this line to the bottom:
 `source ./.env`
 
 ```
-git clone <thisrepo>
+git clone https://github.com/mkinney/discord_aibot.git
 cd discord_aibot
 python3 -m venv venv
 source venv/bin/activate
@@ -51,9 +45,9 @@ You should see something like this:
 
 ```
 $ python reply.py
-2023-04-29 02:49:21 INFO     discord.client logging in using static token
-2023-04-29 02:49:22 INFO     discord.gateway Shard ID None has connected to Gateway (Session ID: xxx).
-Logged in as xxx#8784 (ID: xxx)
+2023-04-29 05:44:50 INFO     discord.client logging in using static token
+2023-04-29 05:44:51 INFO     discord.gateway Shard ID None has connected to Gateway (Session ID: xxx).
+Logged in as daibot#xxx (ID: xxx)
 ```
 
 From discord you should see "XXX is here" in the channel.
@@ -62,7 +56,7 @@ It should respond to you when you type in "!hello".
 If so, then kill the reply.py program.
 
 ```
-wget https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin
+wget http://gpt4all.io/models/ggml-gpt4all-l13b-snoozy.bin
 ```
 
 Run "python example.py"
@@ -70,19 +64,11 @@ Make sure it works.
 You'll get a sense of how long responses may take.
 
 Run "python bot.py"
-Again, the loggint should show it logged in ok.
+Again, the output should show it logged in ok.
 From discord run "?ai Some question"
 
 Note: If you run "python bot.py" and you get "Aborted (core dumped)", then you probably ran out of memory. (I got this when I used a 4gb ram instance.)
-Either add more memory or add some swap. (note: this will make the bot respond slowly)
-```
-	free -h
-	fallocate -l 8G /swapfile
-	chmod 600 /swapfile
-	mkswap /swapfile
-	swapon /swapfile
-	free -h
-```
+Either add more memory or add some swap.
 
 Here's what it looks like in testing:
 
