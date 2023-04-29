@@ -73,7 +73,7 @@ Run "python bot.py"
 Again, the loggint should show it logged in ok.
 From discord run "?ai Some question"
 
-Note: If you run "python bot.py" and you get "Aborted (core dumped)", then you probably ran out of memory.
+Note: If you run "python bot.py" and you get "Aborted (core dumped)", then you probably ran out of memory. (I got this when I used a 4gb ram instance.)
 Either add more memory or add some swap. (note: this will make the bot respond slowly)
 ```
 	free -h
