@@ -53,6 +53,9 @@ Logged in as daibot#xxx (ID: xxx)
 From discord you should see "XXX is here" in the channel.
 It should respond to you when you type in "!hello".
 
+<img width="300" alt="Screen Shot 2023-04-28 at 10 46 19 PM" src="https://user-images.githubusercontent.com/2219838/235289717-383ccf45-ac8b-4179-a786-cd980e33076f.png">
+
+
 If so, then kill the reply.py program.
 
 ```
@@ -63,6 +66,7 @@ Run "python example.py"
 Make sure it works.
 You'll get a sense of how long responses may take.
 
+
 Run "python bot.py"
 Again, the output should show it logged in ok.
 From discord run "?ai Some question"
@@ -72,5 +76,6 @@ Either add more memory or add some swap.
 
 Here's what it looks like in testing:
 
-<img width="283" alt="Screen Shot 2023-04-28 at 8 43 09 PM" src="https://user-images.githubusercontent.com/2219838/235283566-1ff8b63a-5a7d-4d6c-a197-271f997d5622.png">
+<img width="863" alt="Screen Shot 2023-04-29 at 12 24 38 AM" src="https://user-images.githubusercontent.com/2219838/235289796-422d86d7-b7e9-4934-a6a9-a601091fd382.png">
+
 
