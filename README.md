@@ -78,4 +78,14 @@ Here's what it looks like in testing:
 
 <img width="863" alt="Screen Shot 2023-04-29 at 12 24 38 AM" src="https://user-images.githubusercontent.com/2219838/235289796-422d86d7-b7e9-4934-a6a9-a601091fd382.png">
 
+To set up the bot as a service to auto start upon a reboot, as root run:
+
+```
+cp aibot.service /etc/systemd/system/aibot.service
+systemctl daemon-reload
+systemctl start aibot
+systemctl status aibot
+tail -n 20 /var/log/syslog
+systemctl enable aibot
+```
 

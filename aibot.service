@@ -1,0 +1,12 @@
+[Unit]
+Description=Discord AI bot
+
+[Service]
+Type=simple
+User=dbots
+Restart=always
+WorkingDirectory=/home/dbots/discord_aibot
+ExecStart=/home/dbots/discord_aibot/aibot.bash
+
+[Install]
+WantedBy=multi-user.target
