@@ -83,3 +83,7 @@ Either add more memory or add some swap. (note: this will make the bot respond s
 	swapon /swapfile
 	free -h
 ```
+
+Here's what it looks like in testing:
+<img width="283" alt="Screen Shot 2023-04-28 at 8 43 09 PM" src="https://user-images.githubusercontent.com/2219838/235283566-1ff8b63a-5a7d-4d6c-a197-271f997d5622.png">
+
