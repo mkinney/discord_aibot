@@ -106,9 +106,9 @@ From discord run "?ai Some question"
 Note: If you run "python bot.py" and you get "Aborted (core dumped)", then you probably ran out of memory. (I got this when I used a 4gb ram instance.)
 Either add more memory or add some swap.
 
-Here's what it looks like in testing:
+Here's one example in use:
+<img width="874" alt="Screen Shot 2023-04-29 at 6 53 23 PM" src="https://user-images.githubusercontent.com/2219838/235331802-8115057c-a237-4b9d-a07d-c77637f2d209.png">
 
-<img width="863" alt="Screen Shot 2023-04-29 at 12 24 38 AM" src="https://user-images.githubusercontent.com/2219838/235289796-422d86d7-b7e9-4934-a6a9-a601091fd382.png">
 
 For Linux users: to set up the bot as a service to auto start upon a reboot, as root run:
 
