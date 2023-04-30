@@ -5,9 +5,6 @@ import discord
 from discord.ext import commands
 from pygpt4all.models.gpt4all import GPT4All
 
-def new_text_callback(text):
-    return text
-
 discord_token = os.environ['DISCORD_TOKEN']
 
 description = '''An example bot to showcase pygpt4all'''
@@ -25,15 +22,15 @@ async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
 
-
 @bot.command()
 async def ai(ctx, *, question: str):
     """Ask the ai a question."""
-    response = model.generate(question, n_predict=55, new_text_callback=new_text_callback)
-    # get rid of the question and trailer
-    ans = response.replace(question,"")
-    ans = ans.replace("<|endoftext|>","")
-    await ctx.send("Asked ai:{}\nResponse:{}".format(question, ans))
-
+    ans = ""
+    # Note: Every 10 seconds, you will get a WARNN level logging message
+    # that will look like this:
+    #   {gateway.py:186} WARNING - Shard ID None heartbeat blocked for more than xxx seconds.
+    for token in model.generate(question, temp=0.28, n_predict=4096):
+        ans += token
+    await ctx.send("ai:{}\n".format(ans))
 
 bot.run(discord_token)
