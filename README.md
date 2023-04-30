@@ -1,5 +1,22 @@
 # Setting up the simplest Discord AI bot using pygpt4all
 
+Couple of options:
+1) Use a windows or mac computer that has sufficient cpu/memory to run the bot in the background, or 
+2) Use a linux virtual machine to run in the background.
+
+## Windows based bot
+
+- Clone this repository
+- With a "Command prompt" in that cloned repository directory run the following:
+
+```
+python -m venv venv
+venv\scripts\activate
+pip install -r requirements.txt
+```
+
+## Linux based bot
+
 On Ubuntu 22.04 with 14gb ram, 4 procs, and the ich9 chipset in Virtualbox to run the 13b model
 
 TIP: If you have vagrant, you can simply run "vagrant up", then "vagrant ssh", then "sudo su - dbots" update the value in .env file.
@@ -27,17 +44,25 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Set up bot in discord
+
 Go to https://discord.com/developers/applications and create a "New Application"
 Go into Oauth2 and copy the Client ID
 Go to https://discordapp.com/oauth2/authorize?client_id=XXXXXXXXXXXX&scope=bot
 but replace the X's with the client id
 
 Go into Bot, View Token (or reset)
-Copy the token value into the .env file
-Note: Any changes to the .env file will need to be reloaded. Simplest way is to exit from the dbot user, then re-su again.
+
+For linux users: 
+- Copy the token value into the .env file
+- Any changes to the .env file will need to be reloaded. Simplest way is to exit from the dbot user, then re-su again.
 
 Ensure the Bot has "Presence intent", "Server members intent", and "Message Content Intent" enabled.
 Note: You probably do not want a public bot.
+
+For Windows users:
+- You can set an environment variable called DISCORD_TOKEN, or
+- Comment out the `discord_token` line and change the `discord_token` to be the token from the above step.
 
 Run "python reply.py"
 
@@ -56,16 +81,23 @@ It should respond to you when you type in "!hello".
 <img width="300" alt="Screen Shot 2023-04-28 at 10 46 19 PM" src="https://user-images.githubusercontent.com/2219838/235289717-383ccf45-ac8b-4179-a786-cd980e33076f.png">
 
 
-If so, then kill the reply.py program.
+Make sure you get that to work before continuing.
+
+If successful, then kill the reply.py program. (control-c)
+
+Download the model:
 
 ```
 wget http://gpt4all.io/models/ggml-gpt4all-l13b-snoozy.bin
 ```
 
 Run "python example.py"
-Make sure it works.
+
+Make sure you get that to work before continuing.
+
 You'll get a sense of how long responses may take.
 
+If on Windows, if you did not set the environment variable, you'll have to hard code the token into the script. Comment out the `discord_token` line and change the `discord_token` to be the token from the above step.
 
 Run "python bot.py"
 Again, the output should show it logged in ok.
@@ -78,7 +110,7 @@ Here's what it looks like in testing:
 
 <img width="863" alt="Screen Shot 2023-04-29 at 12 24 38 AM" src="https://user-images.githubusercontent.com/2219838/235289796-422d86d7-b7e9-4934-a6a9-a601091fd382.png">
 
-To set up the bot as a service to auto start upon a reboot, as root run:
+For Linux users: to set up the bot as a service to auto start upon a reboot, as root run:
 
 ```
 cp aibot.service /etc/systemd/system/aibot.service
