@@ -50,11 +50,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Test that the bot is setup ok in Discord by temporarily running a simple 'reply' bot.
+## Test that the bot is setup ok in Discord by temporarily running a simple reply bot.
 
 Run "python reply.py"
 
-You should see something like this:
+You should see something like this from the bot side:
 
 ```
 $ python reply.py
@@ -64,7 +64,11 @@ Logged in as daibot#xxx (ID: xxx)
 ```
 
 From discord you should see "XXX is here" in the channel.
-It should respond to you when you type in "!hello".
+
+<img width="333" alt="Screen Shot 2023-04-30 at 6 50 57 PM" src="https://user-images.githubusercontent.com/2219838/235389581-c8d54811-1a10-4761-84f3-6a8c7e0b92c8.png">
+
+
+The reply bot should respond to you when you type in "!hello".
 
 <img width="300" alt="Screen Shot 2023-04-28 at 10 46 19 PM" src="https://user-images.githubusercontent.com/2219838/235289717-383ccf45-ac8b-4179-a786-cd980e33076f.png">
 
