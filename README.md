@@ -54,6 +54,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Dealing with the token
+
 For linux users: 
 - Copy the token value into the .env file
 - Any changes to the .env file will need to be reloaded. Simplest way is to exit from the dbot user, then re-su again.
@@ -125,3 +127,6 @@ tail -n 20 /var/log/syslog
 systemctl enable aibot
 ```
 
+## Limitations
+- Since it is CPU only, it may be slow. The python library to interact with discord is called discord.py. It has a limitation where it will log every 10 seconds a bot is running. 
+- If not running as a linux service, then if the bot program dies or needs to be re-started, change to the directory, run the activate script, then run "python bot.py" again.
