@@ -5,13 +5,17 @@
 - Go to https://discord.com/developers/applications and create a "New Application"
 - Go into Oauth2 and copy the Client ID
 - Go to https://discordapp.com/oauth2/authorize?client_id=XXXXXXXXXXXX&scope=bot but replace the X's with the client id
-- Go into Bot, View Token (or reset)
+- Go into Bot, View Token (or reset). Copy that token value. It will be used later.
 - Ensure the Bot has "Presence intent", "Server members intent", and "Message Content Intent" enabled. (You probably do not want a public bot.)
+
+## Dealing with the token
+- Copy the .env_example file to .env
+- Edit the .env file and change the xxx value for the token created in the Discord bot setup step above
 
 ## Where do you want to run the bot?
 
 You have a few options:
-1) Use a windows or mac computer that has sufficient cpu/memory to run the bot in the background, or 
+1) Use a windows or mac computer that has sufficient cpu/memory to run the bot in the background, or
 2) Use a linux virtual machine to run in the background.
 
 ## Windows based bot
@@ -29,22 +33,14 @@ pip install -r requirements.txt
 
 On Ubuntu 22.04 with 14gb ram, 4 procs, and the ich9 chipset in Virtualbox to run the 13b model
 
-TIP: If you have vagrant, you can simply run "vagrant up", then "vagrant ssh", then "sudo su - dbots" update the value in .env file.
+TIP: If you have vagrant, you can simply run "vagrant up", then "vagrant ssh", then "sudo su - dbots", "cd discord_aibot", run the alias "act" to activate the python virtual environemnt.
 
 ```
 apt-get update
 apt-get -y install python3.10-venv python3-pip
 useradd -m -s /bin/bash dbots
-
-passwd dbots
 su - dbots
 ```
-
-Edit a file called ".env" and add this line:
-`export DISCORD_TOKEN='xxx'`
-
-Edit .bashrc and add this line to the bottom:
-`source ./.env`
 
 ```
 git clone https://github.com/mkinney/discord_aibot.git
@@ -53,17 +49,6 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
-
-## Dealing with the token
-
-For linux users: 
-- Copy the token value into the .env file
-- Any changes to the .env file will need to be reloaded. Simplest way is to exit from the dbot user, then re-su again.
-
-
-For Windows users:
-- You can set an environment variable called DISCORD_TOKEN, or
-- Comment out the `discord_token` line and change the `discord_token` to be the token from the above step.
 
 ## Test that the bot is setup ok in Discord by temporarily running a simple 'reply' bot.
 
@@ -102,8 +87,6 @@ Make sure you get that to work before continuing.
 
 You'll get a sense of how long responses may take.
 
-If on Windows, if you did not set the environment variable, you'll have to hard code the token into the script. Comment out the `discord_token` line and change the `discord_token` to be the token from the above step.
-
 ## Test out the bot
 
 - Run "python bot.py". Again, the output should show it logged in ok.
@@ -128,5 +111,9 @@ systemctl enable aibot
 ```
 
 ## Limitations
-- Since it is CPU only, it may be slow. The python library to interact with discord is called discord.py. It has a limitation where it will log every 10 seconds a bot is running. 
+- Since pygpt4all is CPU only, it may be slow. The python library to interact with discord is called discord.py. discord.py has a limitation where it will log every 10 seconds a bot is running.
+- You may want to change the number of cores that it runs on to improve the speed. If so, add this parameter `n_threads=4` to the `generate` arguments, where 4 can be changed to what you want.
 - If not running as a linux service, then if the bot program dies or needs to be re-started, change to the directory, run the activate script, then run "python bot.py" again.
+- If you want to change the model, you'll have to change the code. (which should be fairly straighforward)
+- If you don't like "?ai" you can change those in code.
+- Only one ai request is handled at a time. On a small discord server with a couple of users, this would be totally fine. On a busier server, it would probably not be fine.

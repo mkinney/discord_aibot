@@ -1,11 +1,9 @@
-# copied the reply.py example from discord.py and modified to get token from env variable
-
 import os
 import discord
+from dotenv import load_dotenv
 
-discord_token = os.environ['DISCORD_TOKEN']
-
-
+load_dotenv()
+discord_token = os.getenv("DISCORD_TOKEN")
 
 class MyClient(discord.Client):
     async def on_ready(self):

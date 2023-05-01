@@ -1,11 +1,11 @@
-# Note: started from the basic_bot.py example
-
 import os
 import discord
 from discord.ext import commands
 from pygpt4all.models.gpt4all import GPT4All
+from dotenv import load_dotenv
 
-discord_token = os.environ['DISCORD_TOKEN']
+load_dotenv()
+discord_token = os.getenv("DISCORD_TOKEN")
 
 description = '''An example bot to showcase pygpt4all'''
 
