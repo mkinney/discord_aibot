@@ -16,7 +16,8 @@
 
 You have a few options:
 1) Use a windows or mac computer that has sufficient cpu/memory to run the bot in the background, or
-2) Use a linux virtual machine to run in the background.
+2) Use a linux virtual machine via vagrant
+3) Use linux
 
 ## Windows based bot
 
@@ -29,20 +30,31 @@ venv\scripts\activate
 pip install -r requirements.txt
 ```
 
-## Linux based bot
+## Linux based bot with Vagrant
 
-On Ubuntu 22.04 with 14gb ram, 4 procs, and the ich9 chipset in Virtualbox to run the 13b model
+- Run these commands:
 
-TIP: If you have vagrant, you can simply run "vagrant up", then "vagrant ssh", then "sudo su - dbots", "cd discord_aibot", run the alias "act" to activate the python virtual environemnt.
+This will spin up Ubuntu 22.04 with 14gb ram, 4 procs, and the ich9 chipset in Virtualbox to run the 13b model. (see Vagrantfile)
+
+```
+vagrant up
+vagrant ssh
+sudo su - dbots
+cd discord_aibot
+act
+```
+
+## Linux based bot (manual steps)
+
+Note: Tested on Ubuntu 22.04.
+
+- Run these commands:
 
 ```
 apt-get update
 apt-get -y install python3.10-venv python3-pip
 useradd -m -s /bin/bash dbots
 su - dbots
-```
-
-```
 git clone https://github.com/mkinney/discord_aibot.git
 cd discord_aibot
 python3 -m venv venv
