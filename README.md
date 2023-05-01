@@ -1,6 +1,16 @@
 # Setting up the simplest Discord AI bot using pygpt4all
 
-Couple of options:
+## Set up bot in discord
+
+- Go to https://discord.com/developers/applications and create a "New Application"
+- Go into Oauth2 and copy the Client ID
+- Go to https://discordapp.com/oauth2/authorize?client_id=XXXXXXXXXXXX&scope=bot but replace the X's with the client id
+- Go into Bot, View Token (or reset)
+- Ensure the Bot has "Presence intent", "Server members intent", and "Message Content Intent" enabled. (You probably do not want a public bot.)
+
+## Where do you want to run the bot?
+
+You have a few options:
 1) Use a windows or mac computer that has sufficient cpu/memory to run the bot in the background, or 
 2) Use a linux virtual machine to run in the background.
 
@@ -44,25 +54,16 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Set up bot in discord
-
-Go to https://discord.com/developers/applications and create a "New Application"
-Go into Oauth2 and copy the Client ID
-Go to https://discordapp.com/oauth2/authorize?client_id=XXXXXXXXXXXX&scope=bot
-but replace the X's with the client id
-
-Go into Bot, View Token (or reset)
-
 For linux users: 
 - Copy the token value into the .env file
 - Any changes to the .env file will need to be reloaded. Simplest way is to exit from the dbot user, then re-su again.
 
-Ensure the Bot has "Presence intent", "Server members intent", and "Message Content Intent" enabled.
-Note: You probably do not want a public bot.
 
 For Windows users:
 - You can set an environment variable called DISCORD_TOKEN, or
 - Comment out the `discord_token` line and change the `discord_token` to be the token from the above step.
+
+## Test that the bot is setup ok in Discord by temporarily running a simple 'reply' bot.
 
 Run "python reply.py"
 
@@ -85,6 +86,8 @@ Make sure you get that to work before continuing.
 
 If successful, then kill the reply.py program. (control-c)
 
+## Download the model and test that pygpt4all works as expected
+
 Download the model:
 
 ```
@@ -99,17 +102,18 @@ You'll get a sense of how long responses may take.
 
 If on Windows, if you did not set the environment variable, you'll have to hard code the token into the script. Comment out the `discord_token` line and change the `discord_token` to be the token from the above step.
 
-Run "python bot.py"
-Again, the output should show it logged in ok.
-From discord run "?ai Some question"
+## Test out the bot
 
-Note: If you run "python bot.py" and you get "Aborted (core dumped)", then you probably ran out of memory. (I got this when I used a 4gb ram instance.)
-Either add more memory or add some swap.
+- Run "python bot.py". Again, the output should show it logged in ok.
+- From discord run "?ai Some question"
+
+Note: If you run "python bot.py" and you get "Aborted (core dumped)", then you probably ran out of memory.
 
 Here's one example in use:
 <img width="874" alt="Screen Shot 2023-04-29 at 6 53 23 PM" src="https://user-images.githubusercontent.com/2219838/235331802-8115057c-a237-4b9d-a07d-c77637f2d209.png">
 
 
+## Create a linux service (optional)
 For Linux users: to set up the bot as a service to auto start upon a reboot, as root run:
 
 ```
